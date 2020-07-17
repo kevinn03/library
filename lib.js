@@ -16,5 +16,8 @@ Book.prototype.info = function(){
 };
 
 function addBookToLibrary(){
-    
+
+    let toAdd = prompt().trim();
+    myLibrary.push(toAdd);
 }
+
