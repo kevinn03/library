@@ -1,8 +1,13 @@
 let myLibrary = [];
 let prop = ["title", "author", "pages", "read"]
 
+//main form
 const statusButton = document.querySelector(".mainForm");
 statusButton.style.display = "none";
+
+// add button
+const addBook = document.querySelector(".btn");
+
 
 
 
@@ -19,10 +24,11 @@ Book.prototype.info = function(){
     
 };
 
-function addBookToLibrary(){
+function addBookToLibrary(a,b,c,d="not read"){
 
-    let toAdd = prompt().trim();
+    let toAdd = new Book(a,b,c,d);
     myLibrary.push(toAdd);
+    render();
 }
 
 function editForm(){
@@ -30,18 +36,31 @@ function editForm(){
     
     if(statusButton.style.display === "none"){
         statusButton.style.display = "block";
+        addBook.textContent = "Done";
+        
         
     }else{
         statusButton.style.display = "none";
+        addBook.textContent = "Add Book";
     }
 
 }
 
+function removeAll(){
+
+    let table = document.querySelector(".table");
+        while(table.firstChild){
+            table.removeChild(table.firstChild);
+        }
+    
+}
 
 function render(){
+    removeAll();
     let formButton = document.querySelector(".btn");
         formButton.addEventListener("click", editForm);
-    
+    let subButton = document.querySelector(".subot");
+        subButton.addEventListener("click", submitForm);
     let table = document.querySelector(".table");
     
     for (let i = 0; i < myLibrary.length; i++) {
@@ -96,6 +115,7 @@ function update(){
         myLibrary[index].read = "read";
     }
     let node = document.querySelectorAll(`.${status}`);
+   render();
 
 }
 
@@ -104,10 +124,37 @@ function remove(){
     let index = del.slice(-1);
     index *= 1;
     myLibrary.splice(index, 1);
-    let row = document.querySelector(`.row${index}`);
-    row.parentNode.removeChild(row);
+    render();
 
 
+}
+
+
+function submitForm(){
+
+
+   
+
+    let author = document.querySelector("#name").value;
+    let title = document.querySelector("#title").value;
+    let pg = document.querySelector("#pages").value;
+    let read = document.querySelector("#read").value;
+    
+
+
+   
+addBookToLibrary(title, author, pg, read);
+
+clearForm();
+
+    
+}
+
+function clearForm(){
+document.querySelector("#name").value = "";
+document.querySelector("#title").value = "";
+document.querySelector("#pages").value = "";
+document.querySelector("#read").value = "";
 }
 
 //test
@@ -122,4 +169,7 @@ myLibrary.push(Lotr2);
 
 let Lotr3 = new Book("Lotr3", "Tolken", "600", "not read");
 myLibrary.push(Lotr3);
-render();
+
+window.onload = function () { 
+    render();
+  };

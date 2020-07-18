@@ -11,7 +11,7 @@
         <div class="add"><button class="btn">Add Book</button>
             
           
-            <form action="" method="get" class="mainForm">
+            <form class="mainForm" onsubmit="return false;">
                 <div class="form-example">
                   <label for="name">Author: </label>
                   <input type="text" name="name" id="name" required>
@@ -26,12 +26,13 @@
                   </div>
                   
                   <div class="form-example">
-                  <input type="checkbox" id="read" name="read" value="Read">
+                  
                 <label for="read">Have you read the book?</label>
+                <input type="text" id="read" name="read" >
                   </div>
                 
-                  <div class="form-example">
-                  <input type="submit" value="Submit">
+                  <div>
+                  <input class="subot" type="submit" value="Submit">
                 </div>
               </form>
                  
