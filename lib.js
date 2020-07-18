@@ -8,9 +8,13 @@ statusButton.style.display = "none";
 // add button
 const addBook = document.querySelector(".btn");
 
+const table = document.querySelector(".table");
 
 
 
+
+
+// Book constructor
 function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
@@ -23,14 +27,14 @@ Book.prototype.info = function(){
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
     
 };
-
+// Add book to the Library
 function addBookToLibrary(a,b,c,d="not read"){
 
     let toAdd = new Book(a,b,c,d);
     myLibrary.push(toAdd);
     render();
 }
-
+// show/hide form
 function editForm(){
     
     
@@ -46,22 +50,24 @@ function editForm(){
 
 }
 
+// Remove all tr and td nodes
 function removeAll(){
 
-    let table = document.querySelector(".table");
+    
         while(table.firstChild){
             table.removeChild(table.firstChild);
         }
     
 }
 
+//creates table data based off library data
 function render(){
     removeAll();
-    let formButton = document.querySelector(".btn");
-        formButton.addEventListener("click", editForm);
+    
+        addBook.addEventListener("click", editForm);
     let subButton = document.querySelector(".subot");
         subButton.addEventListener("click", submitForm);
-    let table = document.querySelector(".table");
+   
     
     for (let i = 0; i < myLibrary.length; i++) {
         
@@ -70,30 +76,30 @@ function render(){
         
         for (let j = 0; j < 4; j++) {
             
-            let data = document.createElement("td");
-            data.textContent = myLibrary[i][prop[j]];
-            data.classList.add(`data${j}`)
-            data.classList.add(`status${i}`)
-            row.appendChild(data);
+            let tableData = document.createElement("td");
+            tableData.textContent = myLibrary[i][prop[j]];
+            tableData.classList.add(`data${j}`)
+            tableData.classList.add(`status${i}`)
+            row.appendChild(tableData);
         }
-        let readtd = document.createElement("td");
-        let buttd = document.createElement("button");
-        buttd.textContent = "O";
-        buttd.classList.add(`status${i}`);
-        buttd.classList.add("status");
-        buttd.addEventListener("click", update);
-        readtd.appendChild(buttd);
+        let readTd = document.createElement("td");
+        let buttonRead = document.createElement("button");
+        buttonRead.textContent = "O";
+        buttonRead.classList.add(`status${i}`);
+        buttonRead.classList.add("status");
+        buttonRead.addEventListener("click", update);
+        readTd.appendChild(buttonRead);
         
-        let deltd = document.createElement("td");
-        let butdel = document.createElement("button");
-        butdel.textContent = "X";
-        butdel.classList.add(`del${i}`);
-        butdel.classList.add("delete");
-        butdel.addEventListener("click", remove);
-        deltd.appendChild(butdel);
+        let delTd = document.createElement("td");
+        let buttonDelete = document.createElement("button");
+        buttonDelete.textContent = "X";
+        buttonDelete.classList.add(`del${i}`);
+        buttonDelete.classList.add("delete");
+        buttonDelete.addEventListener("click", remove);
+        delTd.appendChild(buttonDelete);
 
-        row.appendChild(readtd);
-        row.appendChild(deltd);
+        row.appendChild(readTd);
+        row.appendChild(delTd);
         table.appendChild(row);
         
         
@@ -101,9 +107,10 @@ function render(){
     }
     
         
-    //add book 
+    
 }
 
+// update read status
 function update(){
     let status = this.classList[0];
     let index = status.slice(-1);
@@ -118,7 +125,7 @@ function update(){
    render();
 
 }
-
+// removes a book from table/library
 function remove(){
     let del = this.classList[0];
     let index = del.slice(-1);
@@ -129,7 +136,7 @@ function remove(){
 
 }
 
-
+// what happens when form is submitted
 function submitForm(){
 
 
@@ -149,13 +156,13 @@ clearForm();
 
     
 }
-
+// clears the form
 function clearForm(){
-document.querySelector("#name").value = "";
-document.querySelector("#title").value = "";
-document.querySelector("#pages").value = "";
-document.querySelector("#read").value = "";
-}
+    document.querySelector("#name").value = "";
+    document.querySelector("#title").value = "";
+    document.querySelector("#pages").value = "";
+    document.querySelector("#read").value = "";
+    }
 
 //test
 let Harry = new Book("Harry Potter", "JK", "400", "read");
