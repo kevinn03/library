@@ -59,11 +59,36 @@ function removeAll(){
         }
     
 }
+// creates header in table
+function tableHeader(){
+    let header = [];
+    let tableRow = document.createElement("tr");
+    tableRow.classList.add("header");
+    for (let i = 0; i < 4; i++) {
+        header.push(document.createElement("th"));
+        
+    }
+    header[0].textContent = "Title";
+    header[1].textContent = "Author";
+    header[2].textContent = "Pages";
+    header[3].textContent = "Read";
+
+    for (let j = 0; j < 4; j++) {
+        tableRow.appendChild(header[j]);
+        
+    }
+
+    table.appendChild(tableRow);
+    
+   
+}
 
 //creates table data based off library data
 function render(){
     removeAll();
-    
+        
+
+    tableHeader();
         addBook.addEventListener("click", editForm);
     let subButton = document.querySelector(".subot");
         subButton.addEventListener("click", submitForm);
