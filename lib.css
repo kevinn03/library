@@ -1,0 +1,46 @@
+body {
+   background-color: rgb(206, 228, 235);
+    margin: auto;
+}
+
+.main {
+    margin: auto;
+    width: 960px;
+    height: 960px;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 40px;
+}
+
+.add {
+    text-align: right;
+    padding: 20px;
+}
+.btn {
+    font-size: large;
+}
+
+h1{
+    text-align:  center;
+}
+
+.but{
+    text-align: right;
+}
+
+
+table {
+    margin: auto;
+    border: 2px solid black;
+    width: 400px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.status {
+    background-color: rgb(5, 185, 5);
+}
+
+.delete {
+    background-color: red;
+}
