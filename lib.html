@@ -8,7 +8,35 @@
 <body>
     <h1>Library</h1>
     <div class="main">
-        <div class="add"><button class="btn">Add Book</button></div>
+        <div class="add"><button class="btn">Add Book</button>
+            
+          
+            <form action="" method="get" class="mainForm">
+                <div class="form-example">
+                  <label for="name">Author: </label>
+                  <input type="text" name="name" id="name" required>
+                </div>
+                <div class="form-example">
+                  <label for="title">Title: </label>
+                  <input type="text" name="title" id="title" required>
+                </div>
+                <div class="form-example">
+                    <label for="pages">#pages: </label>
+                    <input type="text" name="pages" id="pages" required>
+                  </div>
+                  
+                  <div class="form-example">
+                  <input type="checkbox" id="read" name="read" value="Read">
+                <label for="read">Have you read the book?</label>
+                  </div>
+                
+                  <div class="form-example">
+                  <input type="submit" value="Submit">
+                </div>
+              </form>
+                 
+        
+        </div>
         
         <table class="table">
         <tr class="header">
